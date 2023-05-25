@@ -1,7 +1,7 @@
 from menu import products
 
 def calculate_tab(table):
-    sub_total = 0.0  
+    sub_total = 0  
     for item in table:
         item_selected = item["_id"]
         amount_item = item["amount"]

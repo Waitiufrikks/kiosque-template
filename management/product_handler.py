@@ -1,4 +1,6 @@
 from menu import products
+from collections import Counter
+import math
 
 
 def add_product(menu,**new_product):
@@ -13,26 +15,40 @@ def add_product(menu,**new_product):
    
    return new_product
 
-add_product(products,
-        description= "Healthy breakfast with cottage cheese and strawberry",
-        price= 14.05,
-        rating= 1,
-        title= "Breakfast with cottage",
-        type= "fruit")
+def get_product_by_id(id: int):
+   if type(id) != int:
+      raise TypeError ("product id must be an int")
+    
+   for item in products:
+        if item['_id'] == id:
+            return item
 
-def get_product_by_id (id):
-   for items in products:
-      if items['_id'] == id:
-         return items
-   return {}      
+   return {}  
      
-item_id_found = get_product_by_id(10)
-
-def get_products_by_type (type):
+def get_products_by_type (tag: str):
    list_for_tags = []
+
+   if type(tag) != str:
+      raise TypeError ("product type must be a str")
+      
    for items in products:
-      if items['type'] == type:
+      if items['type'] == tag:
          list_for_tags.append(items)
    return list_for_tags
      
-item_tag_found = get_products_by_type('bakery')
+
+def menu_report ():
+   prices_items = []
+   types_items = []
+
+   for item in products:
+     prices_items.append(item["price"])
+     types_items.append(item["type"])
+
+   counter_type = Counter(types_items)
+   most_common_type = counter_type.most_common(1)[0][0]
+   
+   total_in_menu = len(products) 
+   test = sum([product["price"] for product in products])
+   total_price_menu = round((test/total_in_menu),2)
+   return f"Products Count: {total_in_menu} - Average Price: ${total_price_menu} - Most Common Type: {most_common_type}"

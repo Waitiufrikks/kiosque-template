@@ -1,4 +1,4 @@
-from management.product_handler import add_product
+from management.product_handler import add_product,item_tag_found,menu_report
 from management.tab_handler import calculate_tab
 from menu import products
 if __name__ == "__main__":
@@ -20,7 +20,7 @@ if __name__ == "__main__":
    
    # add_product(products, **new_product)
   
-  
+   # menu_report()
    # if item_tag_found:
    #    print(item_tag_found)
    # else:
@@ -30,4 +30,4 @@ if __name__ == "__main__":
    #    print(item_id_found)
    # else:
    #    print({})
-  ... 
+   ... 
